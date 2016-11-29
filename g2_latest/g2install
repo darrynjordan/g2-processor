@@ -1,0 +1,4 @@
+#!/bin/bash
+cp mocomp rngcom stepf corner azcom sniffdc b2tif imu_unpack ~/14sar/bin
+cp iq2mag flt2byte swapend pga ~/14sar/bin
+cp g2.py g2tools.py g2tmpl.py Gnuplot.py grnn.py g2unpk_dgps.py ~/14sar/bin
