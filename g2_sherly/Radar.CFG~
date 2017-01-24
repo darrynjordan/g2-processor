@@ -1,0 +1,53 @@
+SASAR VHF configuration file for G2 Processor
+$RadarConfigVersion => 0.4    
+=============================================
+$DataID                                   => 1
+$RawDataFile (no path)                    => exam2rco.bin
+$LBRFile (no path)                        => exam2rco.bin
+$DGPSFile (no path)                       => exam2rco.bin
+$RawDataType (byte/float - see note)      => byte
+$DataStartLP (LBR PRI for raw data start) => 0
+$RadarDelayToStartSample (secs)           => 0
+$RadarPRF (as in raw data file - Hz)      => 1000
+$RadarAzSamples (in raw data file)        => 19
+$RadarRngBins (in raw data file)          => 146
+$RadarA2DFreq (Hz)                        => 40.0e+06
+$RadarCarrierFreq (nominal - Hz)          => 500.0e+06
+$RadarPulseLength (sec)                   => 2500.0e-09
+$RadarChirpBandwidth (Hz - zero for mono) => 100.0e+6
+$RadarMocTimeOffset (sec)                 => 0
+$TerrainAlt (m)                           => 0
+
+--Stepped Freq Setup (see note) --
+$StepFreqMode (no/normal/user)            => no
+$NumberOfFreqSteps (normal)               => 1
+$FirstStepCentreFreq (normal - Hz)        => 141.0e+06
+$StepFreqStepSize (normal - Hz)           => 12.0e+06
+$StepFreqUserFile (user - no path)        => null
+
+--Optional Params (else 'null' - see note)--
+$DCOffsetI                                => 127.0
+$DCOffsetQ                                => 127.0
+$IQRatio                                  => 1.0
+$AveGroundSpeed (m/s)                     => 5
+
+Notes
+=====
+
+RawDataType - byte (8-bit I, 8-bit Q, unsigned char)
+              float (32-bit IEEE float I and Q, litte endian)
+
+Stepped Freq Setup:
+    For stepped freq operation, the "RadarPulseLen" and
+    "RadarChirpBandwidth" parameters are taken to be those of each
+    narrow band pulse (assumed constant for a run). The step freq
+    user file first line should be an integer which is the number
+    of freq steps with the centre frequency of each step (in Hz)
+    on subsequent lines.
+
+Optional Params:
+    These values are only used if the processor module where they
+    are normally calculated is set to 'off'. For example the DC
+    offsets and IQ ratio are usually calculated in the SniffDC
+    module. The average ground speed is calculated in the motion
+    compensation calculation module.

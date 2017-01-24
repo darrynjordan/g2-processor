@@ -1,0 +1,42 @@
+Prog: RNGCOM (Ver. 1.3) Log File
+Code: J.M. Horrell (C) UCT Radar Remote Sensing Group 2000
+
+
+ WARNING: less than half output bins will be valid!
+
+MESSAGES:
+Input file                     : /home/darryn/Dropbox/Workspace/MiloSAR/G2/miloSAR.bin
+Output file                    : miloSAR.rnc
+Input data type                : unsigned char (0 - 255)
+Output data type               : float (+-3.4x10^(+-28))
+Start PRI to process           : 0
+Rng compress presum ratio      : 1
+Pre-summed pulses to use       : 19
+Range bins to process          : 146 (0 - 145 from a possible 146)
+Header / footer bytes (input)  : 0 / 0
+Input DC offset I              : 127.000000
+Input DC offset Q              : 127.000000
+Input I/Q ratio                : 1.000000
+Carrier frequency              : 5.000000e+08 Hz
+A2D sampling frequency         : 4.000000e+07 Hz
+Range sample spacing           : 3.747 m
+Range FFT size                 : 256
+Multiplicative scale factor    : 0.000781
+Range compression              : yes
+Reference func phase sign      : -1
+Rng compression chirp BW       : 100.0000 MHz
+Pulse length                   : 2.5000e-06 sec
+Nominal range resolution       : 1.4990 m
+Window time domain constant    : 0.0800
+Range ref function length      : 100 rng bins
+Num valid output bins          : 46 of 146
+Motion compensation            : no
+LMS interference suppression   : no
+Notch interference suppression : no
+STC removal during processing  : no
+
+Processing the 19 output range lines....
+Max value after processing : 1.329147e+02 (float output - no DC offset)
+Max processed : output PRI 1 / rng bin 37
+
+RNG COMPRESSION DONE - in 0 secs (0.00 min)

@@ -7,7 +7,7 @@
 import os, sys
 
 # path to the python bytecode processor files (ends in slash)
-G2path = '/home/darryn/Dropbox/Workspace/G2/g2_latest/'
+G2path = '~/Git/g2-processor/g2_latest/'
 
 # construct command to run the processor 
 cmd = 'python '+G2path+'g2main.py'

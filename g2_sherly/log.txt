@@ -1,0 +1,42 @@
+
+------------
+Prog: RNGCOM (Ver. 1.3)
+Code: J.M. Horrell (Copyright UCT 1994-2000)
+
+MESSAGES:
+Input file                     : exam2.bin
+Output file                    : exam2.out
+Input data type                : unsigned char (0 - 255)
+Output data type               : unsigned char (0 - 255)
+Start PRI to process           : 0
+Rng compress presum ratio      : 1
+Pre-summed pulses to use       : 19
+Range bins to process          : 19 (0 - 18 from a possible 146)
+Header / footer bytes (input)  : 0 / 0
+Input DC offset I              : 0.000000
+Input DC offset Q              : 0.000000
+Input I/Q ratio                : 1.000000
+Carrier frequency              : 5.000000e+08 Hz
+A2D sampling frequency         : 5.000000e+07 Hz
+Range sample spacing           : 2.998 m
+Range FFT size                 : 32
+Multiplicative scale factor    : 0.000000
+Range compression              : yes
+Reference func phase sign      : -1
+Rng compression chirp BW       : 0.0000 MHz
+Pulse length                   : 8.3333e-08 sec
+Nominal range resolution       : 12.4913 m
+Window time domain constant    : 0.0800
+Range ref function length      : 4 rng bins
+Num valid output bins          : 15 of 19
+Motion compensation            : no
+LMS interference suppression   : no
+Notch interference suppression : no
+STC removal during processing  : no
+
+Processing the 19 output range lines....
+PRI : 0 / rng shift : 0.0000 mPRI : 10 / rng shift : 0.0000 mPercentage overflows/zeros : 0.0000e+00 / 1.0000e+02
+Max value after processing : 1.275000e+02 (incl. DC offset 127)
+Max processed : output PRI 0 / rng bin 0
+
+RNG COMPRESSION DONE - in 0 secs (0.00 min)

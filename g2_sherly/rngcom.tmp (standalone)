@@ -1,0 +1,128 @@
+Command file for Rngcom (SAR range compression)
+$ProgramVersion (jmh) => 1.3
+-----------------------------------------------
+
+--General (required)--
+$ScreenUpdateRate                      => 10
+$LogFile ('null' for none)             => exam2rco.log
+$InputFile                             => exam2.bin
+$OutputFile                            => exam2rco.bin
+$InputDataType [see note]              => 0
+$OutputDataType [see note]             => 0
+$StartProcessPRI                       => 0
+$PreSumRatio                           => 1
+$PreSummedPulsesToUse                  => 19
+$InputFileRngBins                      => 146
+$StartRngBin                           => 0
+$RngBinsToProcess                      => 146
+$HeaderBytes                           => 0
+$FooterBytes                           => 0
+$InputDCOffsetI                        => 127.0
+$InputDCOffsetQ                        => 127.0
+$InputIQRatio                          => 1.0
+
+--Misc (required)--
+$CarrierFreq [Hz - SRC,RW,MoC]         => 500.0e+06
+$StepFreqUserFile [note]               => null
+$A2DFreq [Hz]                          => 40.0e+06
+$RngShiftInterpSize [RW,MoC - note]    => 0
+$Scale                                 => 0.2
+
+--Range compression specific (RC)--
+$RngComFlg [Y/N - SRC]                 => Y
+$RngComRefFuncPhaseSign [+-1]          => -1
+$RngComChirpBandwidth [Hz]             => 100.0e+6
+$RngComPulseLen [sec]                  => 2500.0e-09
+$RngComWinConstTime                    => 0.08
+
+--Motion compensation specific (MoC)--
+$MoCompFlg [Y/N]                       => N
+$MoCompFileName                        => tmpg2.moc
+$MoCompRngShiftFlg [Y/N]               => N
+$MoCompRngShiftSign [+-1 - note]       => 1
+$MoCompRngShiftIndex [note]            => 0
+$MoCompPhaseSign [+-1]                 => -1
+$MoCompRngUpdates [note]               => 1
+$MoCompStartPRI [note]                 => 0
+
+--LMS interference suppression (LMS)--
+$LmsFlg [Y/N]                          => N
+$LmsUpdateRate [note]                  => 1
+$LmsNumWeights                         => 512
+$LmsSidelobeOrder [note]               => 0
+
+--Notch interference suppression (Notch)--
+$NotchFlg [Y/N]                        => N
+$NotchUpdateRate                       => 100
+$NotchNumFFTLines [note]               => 100
+$NotchCutoff [dB - note]               => 3
+$NotchMedianKernLen [note]             => 33
+
+--STC specific (STC)--
+$STCFlg [Y/N]                          => N
+$STCFileName [note]                    => tmpg2.stc
+
+--SRC, Doppler centroid and range walk specific (SRC,DOPC,RW)--
+$SRCFlg [Y/N]                          => N
+$DopCentroid [Hz - note]               => 0.0
+$RngWalkRngShiftFlg [Y/N]              => N
+$RngWalkPhaseShiftFlg [Y/N]            => N
+$RngWalkAzBeamwidth [deg - RW]         => 60.0
+$SRCFocusRng [m - SRC]                 => 0.0
+$NomGroundSpeed [m/s - SRC,RW]         => 72.0
+$SquintAngle [deg - SRC,RW]            => 0.0
+$InputPRF [Hz - RW,DOPC]               => 136.364
+
+Notes:
+------
+
+InputDataType : 0 - unsigned char IQ (2*1 bytes per point)
+              : 3 - float IQ (2*4 bytes per point)
+
+OutputDataType : 0 - unsigned char IQ
+                     (2*1 bytes per point - DC offset 127)
+               : 3 - float IQ (2*4 bytes per point)
+
+StepFreqUserFile : 'null' for no stepped freq mode, else ASCII file with number
+          of freq steps on first line followed by centre frequency of
+          each step, each on a new line, in the transmit order.
+
+RngShiftInterpSize : 0 - none
+                   : 1 - nearest neighbour
+                   : else even
+
+MoCompRngShiftSign  : Controls direction of range shift for motion
+                      comp. and is independent of phase shift.
+
+MoCompRngShiftIndex : The motion comp. range update to use for the range
+                      shift. While multiple phase shifts are possible per
+                      line, only a single range shift is possible. Must be
+                      less than MoCompRngUpdates.
+
+MoCompRngUpdates : Ensure precalculated motion comp rng shifts fit in with
+                   selected portion to process. If rng bins is not a multiple
+                   of num of mocomp rng updates, a few rng bins at far swath
+                   may be zeroed due to truncation (not serious).
+
+MoCompStartPRI : Must be updated with StartProcessPRI.
+
+LmsUpdateRate    : 1     - implement standard LMS adaptive filter
+                           (i.e. without using transfer functions)
+
+LmsSidelobeOrder : 0     - no sidelobe supression
+                 : 1,2,3 - increasing level of sidelobe supression
+
+NotchNumFFTLines : Number of range spectra to average,
+                   usually equal to NotchUpdateRate.
+
+NotchCutoff   : Number of dB above average signal strength, where notches are
+                inserted. [Number of dB = 10 * log((abs(range spectrum))^2) ]
+
+NotchMedianKernLen : Length of median filter, used to find average signal
+                     strength. If interference peaks are lumped very close
+                     together, try increasing this value.
+
+STCFileName : ASCII file containing STC curve as space- or line-delimited
+              floats. Best to remove STC for rng compress or interference.
+
+DopCentroid : Removed in time domain.
